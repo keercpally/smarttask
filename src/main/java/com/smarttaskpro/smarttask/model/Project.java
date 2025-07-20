@@ -17,7 +17,8 @@ public class Project {
     private String description;
 
     @ManyToOne
-    private User owner;
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 }

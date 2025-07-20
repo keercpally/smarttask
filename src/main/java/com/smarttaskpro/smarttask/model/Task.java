@@ -16,14 +16,13 @@ public class Task {
     private Long id;
     private String name;
     private String status;
+    private String description;
 
     @ManyToOne
+    @JoinColumn(name = "assigned_to_id")
     private User assigned_to;
 
     @ManyToOne
+    @JoinColumn(name="project_id")
     private Project project;
-
-
-
-
 }

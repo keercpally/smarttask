@@ -50,3 +50,19 @@ public class AuthController {
 
 
 }
+//http://localhost:8080/api/auth/login
+//{
+//  "email": "kpally@gmail.com",
+//  "password": "kpally"
+//}
+//post http://localhost:8080/api/tasks
+//{ "title": "...", "description": "...", "status": "...", "project": { "id": 1} }
+//get http://localhost:8080/api/tasks/project/1
+//Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrcGFsbHlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjM3ODgzLCJleHAiOjE3NTI3MjQyODN9.7hra34MvYBDOEEcN2C3YADhuMZRAGoqP3oYxz6mEsp0
+//post http://localhost:8080/api/projects
+//{
+//  "name": "My First Project",
+//  "description": "Simple task manager"
+//}
+
+//get http://localhost:8080/api/projects
