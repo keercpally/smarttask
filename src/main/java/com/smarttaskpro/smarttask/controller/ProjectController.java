@@ -39,6 +39,30 @@ public class ProjectController {
         project.setUser(user);
         return ResponseEntity.ok(projectService.createProject(project));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Project> getProjectById(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByEmail(userDetails.getUsername()).orElseThrow();
+        Project project;
+        try {
+            project = projectService.getProjectByIdAndUser(id, user);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(project);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Project> updateProject(@PathVariable Long id, @RequestBody Project projectDetails, @AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByEmail(userDetails.getUsername()).orElseThrow();
+        Project updated = projectService.updateProject(id, projectDetails, user);
+        return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProject(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByEmail(userDetails.getUsername()).orElseThrow();
+        projectService.deleteProject(id, user);
+        return ResponseEntity.noContent().build();
+    }
 }
-
-

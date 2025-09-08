@@ -25,12 +25,12 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody RegisterRequest request){
+    public LoginResponse registerUser(@RequestBody RegisterRequest request){
         User user=new User(null,request.getName(),request.getEmail(),request.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         userService.saveUser(user);
-        return "User registered successfully";
+        String token = jwtUtil.generateToken(user.getEmail());
+        return new LoginResponse(token);
     }
 
     @PostMapping("/login")

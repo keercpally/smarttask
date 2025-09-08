@@ -13,14 +13,14 @@ public class SmarttaskApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SmarttaskApplication.class, args);
 	}
-	@Bean
-	public CommandLineRunner testUserRepository(UserRepository userRepository) {
-		return args -> {
-			User user = new User(null, "Alice", "alice@example.com", "password123");
-			userRepository.save(user);
-
-			System.out.println("All users in the database:");
-			userRepository.findAll().forEach(System.out::println);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner testUserRepository(UserRepository userRepository) {
+//		return args -> {
+//			User user = new User(null, "Alice", "alice@example.com", "password123");
+//			userRepository.save(user);
+//
+//			System.out.println("All users in the database:");
+//			userRepository.findAll().forEach(System.out::println);
+//		};
+//	}
 }

@@ -27,7 +27,7 @@ public class ProjectService {
                 .orElseThrow(() -> new RuntimeException("Project not found"));
     }
 
-    public Project updateProject(Long id, Project updatedProject) {
+    public Project updateProject(Long id, Project updatedProject, User user) {
         Project existingProject = projectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Project not found"));
 
@@ -37,7 +37,7 @@ public class ProjectService {
         return projectRepository.save(existingProject);
     }
 
-    public void deleteProject(Long id) {
+    public void deleteProject(Long id, User user) {
         if (!projectRepository.existsById(id)) {
             throw new RuntimeException("Project not found");
         }
@@ -45,7 +45,9 @@ public class ProjectService {
     }
 
 
-
-
-
+    public Project getProjectByIdAndUser(Long id, User user) {
+        return projectRepository.findById(id)
+                .filter(project -> project.getUser().getEmail().equals(user.getEmail()))
+                .orElseThrow(() -> new RuntimeException("Project not found or does not belong to the user"));
+    }
 }
